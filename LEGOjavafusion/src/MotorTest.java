@@ -43,7 +43,7 @@ public class MotorTest {
 
 	}
 
-	public static void main(String[] aprgs) {
+	public static void main(String[] args) {
 		init();
 
 		//travel forward and back picking up and moving until button is pushed

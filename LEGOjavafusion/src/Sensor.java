@@ -6,7 +6,7 @@ import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3IRSensor;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.filter.MeanFilter;
-import lejos.utility.Delay;
+
 
 public class Sensor extends Thread {
 	private EV3IRSensor irSensor ;
