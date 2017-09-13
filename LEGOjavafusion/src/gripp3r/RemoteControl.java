@@ -1,3 +1,4 @@
+package gripp3r;
 import lejos.hardware.Button;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
@@ -22,19 +23,6 @@ public class RemoteControl {
 	private static int command;
 	private static int c;
 	
-	
-	/* 1 TOP-LEFT
-	 * 2 BOTTOM-LEFT
-	 * 3 TOP-RIGHT
-	 * 4 BOTTOM-RIGHT
-	 * 5 TOP-LEFT + TOP-RIGHT
-	 * 6 TOP-LEFT + BOTTOM-RIGHT
-	 * 7 BOTTOM-LEFT + TOP-RIGHT
-	 * 8 BOTTOM-LEFT + BOTTOM-RIGHT
-	 * 9 CENTRE/BEACON
-	 * 10 BOTTOM-LEFT + TOP-LEFT
-	 * 11 TOP-RIGHT + BOTTOM-RIGHT*/
-	
 	public static void init() {
 		irSensor = new EV3IRSensor(SensorPort.S1);
 		
@@ -50,31 +38,6 @@ public class RemoteControl {
 		pilot = new MovePilot(chassis);
 	}
 	
-	public static int getCommand(){
-		command = irSensor.getRemoteCommand(1);
-		return command;
-	}
-	
-	public static void stop() {
-		if(pilot.isMoving()) {
-			pilot.stop();
-		}
-		
-		if(leftMotor.isMoving()) {
-			leftMotor.stop();
-		}
-		
-		if(rightMotor.isMoving()) {
-			rightMotor.stop();
-		}
-		
-	}
-	
-	public static void grip() {
-		if(grip.getLift()) grip.release();
-		else grip.lift();
-	}
-	
 	public static void main(String[] aprgs) {
 		init();
 		
@@ -84,7 +47,8 @@ public class RemoteControl {
 			System.out.println(c);
 
 	        switch (c) {
-	        /* 1 TOP-LEFT
+	        /* 0 NO BOTTOM PUSHED
+	         * 1 TOP-LEFT
 	    	 * 2 BOTTOM-LEFT
 	    	 * 3 TOP-RIGHT
 	    	 * 4 BOTTOM-RIGHT
@@ -124,7 +88,32 @@ public class RemoteControl {
 	        }
 			
 		}
+		
 	}
 	
+	public static int getCommand(){
+		command = irSensor.getRemoteCommand(1);
+		return command;
+	}
+	
+	public static void stop() {
+		if(pilot.isMoving()) {
+			pilot.stop();
+		}
+		
+		if(leftMotor.isMoving()) {
+			leftMotor.stop();
+		}
+		
+		if(rightMotor.isMoving()) {
+			rightMotor.stop();
+		}
+		
+	}
+	
+	public static void grip() {
+		if(grip.getLift()) grip.release();
+		else grip.lift();
+	}
 
 }
